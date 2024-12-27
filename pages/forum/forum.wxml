@@ -1,0 +1,107 @@
+<view class="container">
+  <!-- 状态栏占位 -->
+  <view class="status-bar"></view>
+  
+  <!-- 顶部搜索区域 -->
+  <view class="search-header">
+    <view class="title">校园论坛</view>
+    <view class="search-box">
+      <image class="search-icon" src="/images/search.png" mode="aspectFit"></image>
+      <input 
+        class="search-input" 
+        placeholder="搜索" 
+        confirm-type="search"
+        bindinput="onSearchInput"
+        bindconfirm="onSearchConfirm"
+      />
+    </view>
+  </view>
+
+  <!-- 导航标签区域 -->
+  <view class="nav-container">
+    <view class="nav-tabs">
+      <view class="tab {{currentTab === 0 ? 'active' : ''}}" bindtap="switchTab" data-index="0">
+        全部
+      </view>
+      <view class="tab {{currentTab === 1 ? 'active' : ''}}" bindtap="switchTab" data-index="1">
+        最新论坛
+      </view>
+      <view class="tab {{currentTab === 2 ? 'active' : ''}}" bindtap="switchTab" data-index="2">
+        本周热门
+      </view>
+      <view class="tab {{currentTab === 3 ? 'active' : ''}}" bindtap="switchTab" data-index="3">
+        二手交易
+      </view>
+    </view>
+  </view>
+
+  <!-- 帖子列表内容 -->
+  <scroll-view 
+    scroll-y 
+    class="posts-list"
+    bindscrolltolower="onReachBottom"
+    enable-back-to-top
+  >
+    <view wx:for="{{posts}}" wx:key="id" class="post-card">
+      <!-- 用户信息 -->
+      <view class="user-info">
+        <image class="avatar" src="{{item.avatar}}"></image>
+        <view class="user-detail">
+          <text class="username">{{item.author}}</text>
+          <text class="time">{{item.timestamp}}</text>
+        </view>
+      </view>
+
+      <!-- 帖子内容 -->
+      <view class="post-content" bindtap="goToDetail" data-id="{{item.id}}">
+        <text class="title">{{item.title}}</text>
+        <text class="content">{{item.content}}</text>
+        <view class="image-container" wx:if="{{item.images && item.images.length > 0}}">
+          <block wx:for="{{item.images}}" wx:for-item="media" wx:key="id">
+            <image 
+              wx:if="{{media.type === 'image'}}"
+              src="{{media.url}}"
+              mode="aspectFill"
+              class="post-image"
+            ></image>
+            <video 
+              wx:else
+              src="{{media.url}}"
+              class="post-video"
+              show-center-play-btn="{{true}}"
+              controls
+              object-fit="cover"
+              enable-play-gesture="{{true}}"
+              show-fullscreen-btn="{{true}}"
+              play-btn-position="center"
+              show-play-btn="{{true}}"
+              enable-progress-gesture="{{true}}"
+              catchtap="onVideoTap"
+            ></video>
+          </block>
+        </view>
+      </view>
+
+      <!-- 互动栏 -->
+      <view class="interaction-bar">
+        <view class="action-item" catchtap="handleLike" data-id="{{item.id}}">
+          <image class="like-icon" src="{{item.isLiked ? '/images/like_filled.png' : '/images/like.png'}}"></image>
+          <text class="likes-text">{{item.likes}}</text>
+        </view>
+        <view class="action-item" bindtap="goToDetail" data-id="{{item.id}}">
+          <image class="comment-icon" src="/images/comment.png"></image>
+          <text class="comments-text">{{item.comments}}</text>
+        </view>
+        <button class="action-item share-btn" open-type="share" style="width: 116rpx; height: 43rpx; display: flex; box-sizing: border-box; left: 185rpx; top: 0rpx; position: relative">
+          <image class="share-icon" src="/images/share.png" style="width: 60rpx; height: 39rpx; display: block; box-sizing: border-box"></image>
+          <text></text>
+        </button>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 添加悬浮发帖按钮 -->
+  <view class="post-btn" bindtap="navigateToPost">
+    <text class="plus-icon">+</text>
+  </view>
+</view>

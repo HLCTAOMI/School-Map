@@ -1,0 +1,50 @@
+<!--pages/admin/activity/publish/publish.wxml-->
+<view class="publish-container">
+  <form bindsubmit="handleSubmit">
+    <view class="form-item">
+      <text class="label">活动标题</text>
+      <input class="input" 
+             placeholder="请输入活动标题" 
+             value="{{title}}"
+             data-field="title"
+             bindinput="handleInput"/>
+    </view>
+
+    <view class="form-item">
+      <text class="label">活动时间</text>
+      <picker mode="date" 
+              value="{{time}}" 
+              start="2024-01-01" 
+              end="2025-12-31" 
+              bindchange="bindTimeChange">
+        <view class="picker {{time ? '' : 'placeholder'}}">
+          {{time || '请选择活动时间'}}
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <text class="label">活动地点</text>
+      <input class="input" 
+             placeholder="请输入活动地点" 
+             value="{{location}}"
+             data-field="location"
+             bindinput="handleInput"/>
+    </view>
+
+    <view class="form-item">
+      <text class="label">活动内容</text>
+      <textarea class="textarea" 
+                placeholder="请输入活动内容" 
+                value="{{content}}"
+                data-field="content"
+                bindinput="handleInput"/>
+    </view>
+
+    <view class="form-actions">
+      <button class="submit-btn" form-type="submit">
+        {{isEdit ? '保存修改' : '发布活动'}}
+      </button>
+    </view>
+  </form>
+</view>

@@ -1,0 +1,44 @@
+<!--pages/about/about.wxml-->
+<view class="container">
+  <view class="form-group" style="width: 300px;">
+    <view class="form-title">发布新活动</view>
+    
+    <view class="input-item">
+      <text class="label">活动标题</text>
+      <input class="input" placeholder="请输入活动标题" />
+    </view>
+
+    <view class="input-item">
+      <text class="label">活动日期</text>
+      <picker mode="date" class="picker"> 
+        <view class="picker-inner" >选择日期</view>
+      </picker>
+    </view>
+
+    <view class="input-item">
+      <text class="label">活动时间</text>
+      <picker mode="time" class="picker">
+        <view class="picker-inner">选择时间</view>
+      </picker>
+    </view>
+
+    <view class="input-item">
+      <text class="label">活动地点</text>
+      <input class="input" placeholder="请输入活动地点" />
+    </view>
+
+    <view class="input-item">
+      <text class="label">活动描述</text>
+      <textarea class="textarea" placeholder="请输入活动详细描述" />
+    </view>
+
+    <view class="input-item">
+      <text class="label">上传图片</text>
+      <view class="upload-box">
+        <image class="upload-btn" src="/images/upload.png" />
+      </view>
+    </view>
+
+    <button class="submit-btn" type="primary">发布活动</button>
+  </view>
+</view>

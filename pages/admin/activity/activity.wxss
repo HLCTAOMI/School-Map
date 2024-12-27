@@ -1,0 +1,79 @@
+.activity-container {
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.publish-btn {
+  background-color: #07c160;
+  color: white;
+  font-size: 14px;
+  padding: 8px 16px;
+}
+
+.activity-list {
+  background-color: white;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.activity-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.activity-info {
+  flex: 1;
+}
+
+.activity-title {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.activity-time {
+  font-size: 12px;
+  color: #999;
+}
+
+.activity-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.action-btn {
+  font-size: 12px;
+  padding: 4px 8px;
+  min-width: 60px;
+}
+
+.edit {
+  background-color: #1989fa;
+  color: white;
+}
+
+.delete {
+  background-color: #ff4d4f;
+  color: white;
+}
+
+.loading, .empty {
+  text-align: center;
+  padding: 20px;
+  color: #999;
+} 

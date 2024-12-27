@@ -1,0 +1,87 @@
+{
+  "pages": [
+    "pages/map/map",
+    "pages/index/index",
+    "pages/map/instruction/instruction",
+    "pages/map/search/search",
+    "pages/site/site",
+    "pages/user/user",
+    "pages/user/basicInfo/basicInfo",
+    "pages/user/editInfo/editInfo",
+    "pages/forum/forum",
+    "pages/detail/detail",
+    "pages/post/post",
+    "pages/about/about",
+    "pages/admin/admin",
+    "pages/admin/activity/activity",
+    "pages/admin/activity/publish/publish"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "地图显示功能",
+    "requiredPrivateInfos": {
+      "location": true
+    }
+  },
+  "tabBar": {
+    "list": [
+      {
+        "selectedIconPath": "/images/tabbar/shouye_select.png",
+        "iconPath": "/images/tabbar/shouye.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "selectedIconPath": "/images/tabbar/map_select.png",
+        "iconPath": "/images/tabbar/map.png",
+        "pagePath": "pages/map/map",
+        "text": "地图"
+      },
+      {
+        "pagePath": "pages/forum/forum",
+        "text": "校园论坛",
+        "iconPath": "images/tabbar/luntan_select.png",
+        "selectedIconPath": "images/tabbar/luntan.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "个人中心",
+        "iconPath": "images/tabbar/center_select.png",
+        "selectedIconPath": "images/tabbar/center.png"
+      }
+    ]
+  },
+  "plugins": {
+    "routePlan": {
+      "version": "1.0.0",
+      "provider": "wx50b5593e81dd937a"
+    },
+    "chooseLocation": {
+      "version": "1.0.2",
+      "provider": "wx76a9a06e5b4e693e"
+    }
+  },
+  "requiredPrivateInfos": [
+    "getLocation"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序定位"
+    }
+  },
+  "style": "v2",
+  "rendererOptions": {
+    "skyline": {
+      "defaultDisplayBlock": true,
+      "defaultContentBox": true,
+      "tagNameStyleIsolation": "legacy",
+      "disableABTest": true,
+      "sdkVersionBegin": "3.0.0",
+      "sdkVersionEnd": "15.255.255"
+    }
+  },
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

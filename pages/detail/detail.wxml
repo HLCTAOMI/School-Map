@@ -1,0 +1,160 @@
+<view class="container">
+  <!-- 帖子详情 -->
+  <view class="post-detail">
+    <!-- 用户信息 -->
+    <view class="user-info">
+      <image class="avatar" src="{{post.userAvatar}}"></image>
+      <view class="user-detail">
+        <text class="username">{{post.username}}</text>
+        <text class="time">{{post.createdAt}}</text>
+      </view>
+    </view>
+
+    <!-- 帖子内容 -->
+    <view class="post-content">
+      <text class="title">{{post.title}}</text>
+      <text class="content">{{post.content}}</text>
+      <view class="image-container" wx:if="{{post.mediaList && post.mediaList.length > 0}}">
+        <block wx:for="{{post.mediaList}}" wx:key="id">
+          <!-- 图片显示 -->
+          <image 
+            wx:if="{{item.type === 'image'}}"
+            src="{{item.url}}" 
+            mode="aspectFill"
+            class="post-image {{post.mediaList.length === 1 ? 'single-image' : ''}}"
+            bindtap="previewImage"
+            data-url="{{item.url}}"
+          ></image>
+          <!-- 视频显示 -->
+          <video 
+            wx:else
+            src="{{item.url}}"
+            class="post-video {{post.mediaList.length === 1 ? 'single-video' : ''}}"
+            show-center-play-btn="{{true}}"
+            controls
+            object-fit="cover"
+            enable-play-gesture="{{true}}"
+            show-fullscreen-btn="{{true}}"
+            play-btn-position="center"
+            show-play-btn="{{true}}"
+            enable-progress-gesture="{{true}}"
+          ></video>
+        </block>
+      </view>
+    </view>
+
+    <!-- 互动栏 -->
+    <view class="interaction-bar">
+      <view class="action-item" bindtap="handleLike">
+        <image src="/images/like_filled.png"></image>
+        <text>{{post.likeCount}}</text>
+      </view>
+      <view class="action-item">
+        <image src="/images/comment.png"></image>
+        <text>{{post.commentCount}}</text>
+      </view>
+      <button class="action-item share-btn" open-type="share">
+        <image src="/images/share.png"></image>
+        <text>分享</text>
+      </button>
+    </view>
+  </view>
+
+  <!-- 评论区 -->
+  <scroll-view class="comments-section" scroll-y>
+    <view class="section-title">评论 {{post.commentCount}}</view>
+    <view class="comments-list">
+      <block wx:if="{{commentList.length > 0}}">
+        <!-- 一级评论 -->
+        <view wx:for="{{commentList}}" wx:key="id" class="comment-item">
+          <image class="comment-avatar" src="{{item.icon}}"></image>
+          <view class="comment-content">
+            <view class="comment-header">
+              <text class="comment-username">{{item.nickName}}</text>
+              <text class="comment-time">{{item.createdAt}}</text>
+            </view>
+            <text class="comment-text">{{item.content}}</text>
+            
+            <!-- 评论操作区 -->
+            <view class="comment-actions">
+              <view class="action-left">
+                <view class="like-btn {{item.isLike ? 'liked' : ''}}" 
+                      bindtap="handleCommentLike" 
+                      data-id="{{item.id}}">
+                  <text>赞 {{item.liked || 0}}</text>
+                </view>
+              </view>
+              <view class="action-right">
+                <view class="reply-btn" 
+                      bindtap="onReplyTap" 
+                      data-comment-id="{{item.id}}" 
+                      data-user-id="{{item.userId}}"
+                      data-nick-name="{{item.nickName}}">
+                  回复
+                </view>
+              </view>
+            </view>
+
+            <!-- 子评论列表 -->
+            <view class="replies-container" wx:if="{{item.children.length > 0}}">
+              <view wx:for="{{item.children}}" 
+                    wx:key="id" 
+                    wx:for-item="reply" 
+                    class="reply-item">
+                <image class="reply-avatar" src="{{reply.icon}}"></image>
+                <view class="reply-content">
+                  <view class="reply-header">
+                    <view class="reply-users">
+                      <text class="reply-username">{{reply.nickName}}</text>
+                      <text class="reply-to">回复</text>
+                      <text class="reply-username">{{reply.pnickName || item.nickName}}</text>
+                    </view>
+                    <text class="reply-time">{{reply.createdAt}}</text>
+                  </view>
+                  <text class="reply-text">{{reply.content}}</text>
+                  <!-- 子评论的操作区 -->
+                  <view class="reply-actions">
+                    <view class="action-left">
+                      <view class="like-btn {{reply.isLike ? 'liked' : ''}}" 
+                            bindtap="handleCommentLike" 
+                            data-id="{{reply.id}}">
+                        <text>赞 {{reply.liked || 0}}</text>
+                      </view>
+                    </view>
+                    <view class="action-right">
+                      <view class="reply-btn" 
+                            bindtap="onReplyTap" 
+                            data-comment-id="{{item.id}}"
+                            data-user-id="{{reply.userId}}"
+                            data-nick-name="{{reply.nickName}}">
+                        回复
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+      <view wx:else class="no-comment">暂无评论</view>
+    </view>
+  </scroll-view>
+
+  <!-- 评论输入框 -->
+  <view class="comment-input-section">
+    <input 
+      class="comment-input" 
+      placeholder="{{placeholder}}" 
+      value="{{commentText}}"
+      focus="{{focus}}"
+      bindinput="onCommentInput"
+    />
+    <view class="input-actions">
+      <view wx:if="{{replyTo}}" 
+            class="cancel-reply" 
+            bindtap="cancelReply">取消</view>
+      <button class="send-btn" bindtap="submitComment">发送</button>
+    </view>
+  </view>
+</view> 

@@ -1,0 +1,241 @@
+/* 页面基本样式 */
+page {
+  height: 100%;
+  width: 100%;
+}
+
+.list-landscape-container-icon {
+  position: relative;
+  margin-top: -70rpx;
+  display: flex;
+  align-items: center;
+}
+
+.list-landscape-container-icon-img {
+  height: 140rpx;
+  width: 140rpx;
+    mix-blend-mode: multiply; 
+
+}
+
+.list-landscape-container-icon-school {
+  height: 60rpx;
+  width: 174rpx;
+}
+.list-landscape-container-text {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 3px;
+  /* padding-bottom: 3px; */
+  font-size: 24px;
+  text-align: center;
+}
+
+/* 轮播图容器 */
+.list-landscape-container {
+ position: relative;
+  width: 100%;
+}
+
+.list-landscape-container-swiper {
+   width: 100%;
+  height: 388rpx;
+}
+
+.list-landscape-container-swiper-item {
+  margin-left: 22rpx;
+}
+
+.list-landscape-container-swiper-item-img {
+  width: 100%;
+  height: 388rpx;  /* 固定高度 */
+  border-radius: 0; /* 移除圆角 */
+}
+
+/* 常用功能样式 */
+.card-container {
+  padding: 10px 0;
+}
+
+.card-container-card {
+  margin: 0 15px;
+  padding-top: 5px;
+  border-radius: 10px;
+  background-color: ghostwhite; /* 背景颜色 */
+  border: 1px solid rgb(238, 235, 235); /* 边框 */
+}
+
+.card-container-card-title {
+  font-size: larger; /* 标题字体大小 */
+  font-weight: bold; /* 加粗 */
+  margin-left: 10px; /* 左边距 */
+  height: 28px; /* 高度 */
+  margin-bottom: 10px; /* 底部间距 */
+}
+
+/* 常用功能按钮样式 */
+.two {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 10px; /* 底部间距 */
+}
+
+.card-container-card-button {
+  width: 160px; /* 按钮宽度 */
+  height: 68px; /* 按钮高度 */
+}
+
+/* 颜色样式 */
+.yellow {
+  background-color: #ffe08d; /* 黄色 */
+}
+
+.blue {
+  background-color: #4393ec; /* 蓝色 */
+}
+
+.red {
+  background-color: #f74f32; /* 红色 */
+}
+
+.green {
+  background-color: #38d979; /* 绿色 */
+}
+
+.page-container {
+  min-height: 100vh;
+  background-color: #f5f7fa;
+}
+
+/* 顶部轮播图样式 */
+.banner-section {
+  position: relative;
+  width: 100%;
+  height: 400rpx;
+}
+
+.banner-swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.banner-image {
+  width: 100%;
+  height: 100%;
+}
+
+/* 学校信息样式 */
+.school-info {
+  position: absolute;
+  bottom: -140rpx;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.school-logo {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
+  background: #fff;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.logo-image {
+  width: 100%;
+  height: 100%;
+  mix-blend-mode: multiply;
+}
+
+.school-name {
+  margin-top: 20rpx;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 功能区域样式 */
+.features-section {
+  margin-top: 140rpx;
+  padding: 0 30rpx;
+}
+
+.section-card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.section-more {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 功能网格样式 */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20rpx;
+}
+
+.feature-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20rpx 0;
+}
+
+.feature-icon {
+  width: 80rpx;
+  height: 80rpx;
+  margin-bottom: 10rpx;
+}
+
+.feature-name {
+  font-size: 24rpx;
+  color: #666;
+}
+
+/* 活动列表样式 */
+.activity-list {
+  min-height: 200rpx;
+}
+
+/* 添加过渡动画 */
+.feature-item {
+  transition: all 0.3s ease;
+}
+
+.feature-item:active {
+  transform: scale(0.95);
+}
+
+/* 添加渐变背景 */
+.banner-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100rpx;
+}

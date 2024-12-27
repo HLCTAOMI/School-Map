@@ -1,0 +1,125 @@
+<view class="container">
+  <!-- 普通输入框 -->
+  <block wx:if="{{type !== 'gender'}}">
+    <view class="input-box">
+      <input 
+        type="{{type === 'phone' ? 'number' : 'text'}}"
+        class="input"
+        value="{{value}}"
+        placeholder="{{placeholder}}"
+        maxlength="{{maxLength}}"
+        bindinput="handleInput"
+      />
+      <view class="counter" wx:if="{{type === 'nickName' || type === 'signature'}}">
+        {{value.length}}/{{maxLength}}
+      </view>
+    </view>
+  </block>
+
+  <!-- 性别选择 -->
+  <block wx:if="{{type === 'gender'}}">
+    <view class="input-box">
+      <picker 
+        bindchange="bindGenderChange" 
+        value="{{value === '男' ? 0 : 1}}" 
+        range="{{genderArray}}"
+      >
+        <view class="picker-content">
+          <text class="{{value ? '' : 'placeholder'}}">{{value || placeholder}}</text>
+          <text class="arrow">›</text>
+        </view>
+      </picker>
+    </view>
+  </block>
+
+  <!-- 地区选择 -->
+  <block wx:if="{{type === 'region'}}">
+    <view class="input-box">
+      <picker 
+        mode="region" 
+        bindchange="bindRegionChange" 
+        value="{{region}}"
+      >
+        <view class="picker-content">
+          <text class="{{value ? '' : 'placeholder'}}">{{value || placeholder}}</text>
+          <text class="arrow">›</text>
+        </view>
+      </picker>
+    </view>
+  </block>
+
+  <!-- 手机号修改 -->
+  <block wx:if="{{type === 'phone'}}">
+    <view class="input-box">
+      <view class="phone-input-container">
+        <input 
+          type="number"
+          class="phone-input"
+          value="{{phone}}"
+          placeholder="请输入新手机号"
+          maxlength="11"
+          bindinput="handlePhoneInput"
+        />
+        <button 
+          class="send-code-btn {{!canSendCode ? 'disabled' : ''}}" 
+          bindtap="sendVerifyCode"
+          disabled="{{!canSendCode}}"
+        >
+          {{canSendCode ? '发送验证码' : countdown + 's'}}
+        </button>
+      </view>
+    </view>
+    
+    <view class="input-box">
+      <input 
+        type="number"
+        class="verify-input"
+        value="{{verifyCode}}"
+        placeholder="请输入验证码"
+        maxlength="6"
+        bindinput="handleCodeInput"
+      />
+    </view>
+
+    <view class="tips">
+      验证码将发送至您的手机，请注意查收
+    </view>
+  </block>
+
+  <!-- 提示文本 -->
+  <view class="tips" wx:if="{{type === 'phone'}}">
+    请输入真实的手机号码，方便接收重要通知
+  </view>
+  <view class="tips" wx:elif="{{type === 'nickname'}}">
+    昵称不能包含特殊字符
+  </view>
+  <view class="tips" wx:elif="{{type === 'signature'}}">
+    个性签名展示在个人主页
+  </view>
+
+  <!-- 保存按钮 -->
+  <view class="btn-area">
+    <button class="save-btn" bindtap="saveChanges">保存</button>
+  </view>
+
+  <!-- 性别选择器 -->
+  <picker-view
+    wx:if="{{showGenderPicker}}"
+    class="picker-container"
+    indicator-style="height: 50px;"
+    value="{{value === '男' ? 0 : 1}}"
+    bindchange="bindGenderChange"
+  >
+    <view class="picker-header">
+      <view class="picker-cancel" bindtap="bindCancel">取消</view>
+      <view class="picker-title">选择性别</view>
+      <view class="picker-confirm" bindtap="bindGenderChange">确定</view>
+    </view>
+    <picker-view-column>
+      <view wx:for="{{genderArray}}" wx:key="*this" class="picker-item">{{item}}</view>
+    </picker-view-column>
+  </picker-view>
+
+  <!-- 遮罩层 -->
+  <view class="mask" wx:if="{{showGenderPicker}}" bindtap="bindCancel"></view>
+</view> 

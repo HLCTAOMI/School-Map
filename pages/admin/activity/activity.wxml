@@ -1,0 +1,29 @@
+<view class="activity-container">
+  <view class="header">
+    <text class="title">活动管理</text>
+    <button class="publish-btn" bindtap="goToPublish">发布活动</button>
+  </view>
+
+  <view class="activity-list">
+    <block wx:if="{{loading}}">
+      <view class="loading">加载中...</view>
+    </block>
+    
+    <block wx:elif="{{activities.length === 0}}">
+      <view class="empty">暂无活动</view>
+    </block>
+    
+    <block wx:else>
+      <view class="activity-item" wx:for="{{activities}}" wx:key="id">
+        <view class="activity-info">
+          <text class="activity-title">{{item.title}}</text>
+          <text class="activity-time">{{item.time}}</text>
+        </view>
+        <view class="activity-actions">
+          <button class="action-btn edit" bindtap="handleEdit" data-id="{{item.id}}">编辑</button>
+          <button class="action-btn delete" bindtap="handleDelete" data-id="{{item.id}}">删除</button>
+        </view>
+      </view>
+    </block>
+  </view>
+</view> 

@@ -1,0 +1,80 @@
+<view class="container">
+  <view class="input-section">
+    <input 
+      class="title-input" 
+      placeholder="输入标题" 
+      placeholder-style="color: #999"
+      maxlength="50"
+      bindinput="onTitleInput"
+    />
+  </view>
+
+  <view class="category-section">
+    <view class="category-label">选择分类</view>
+    <view class="category-list">
+      <view class="category-item {{category === '日常' ? 'active' : ''}}" 
+            bindtap="selectCategory" 
+            data-category="日常">日常</view>
+      <view class="category-item {{category === '学习' ? 'active' : ''}}" 
+            bindtap="selectCategory" 
+            data-category="学习">学习</view>
+      <view class="category-item {{category === '娱乐' ? 'active' : ''}}" 
+            bindtap="selectCategory" 
+            data-category="娱乐">娱乐</view>
+      <view class="category-item {{category === '其他' ? 'active' : ''}}" 
+            bindtap="selectCategory" 
+            data-category="其他">其他</view>
+    </view>
+  </view>
+
+  <view class="input-section">
+    <textarea 
+      class="content-input" 
+      placeholder="分享你的想法..." 
+      placeholder-style="color: #999"
+      maxlength="1000"
+      bindinput="onContentInput"
+    />
+  </view>
+
+  <view class="media-section">
+  <view class="media-type-selector">
+    <view class="type-item {{mediaType === 'image' ? 'active' : ''}}" 
+          bindtap="selectMediaType" 
+          data-type="image">图片</view>
+    <view class="type-item {{mediaType === 'video' ? 'active' : ''}}" 
+          bindtap="selectMediaType" 
+          data-type="video">视频</view>
+  </view>
+  
+  <view class="media-grid">
+    <!-- 已有媒体展示 -->
+    <view class="media-item" wx:for="{{mediaFiles}}" wx:key="*this">
+      <video wx:if="{{mediaType === 'video'}}" 
+             src="{{item}}" 
+             mode="aspectFill"
+             bindtap="previewMedia" 
+             data-index="{{index}}" />
+      <image wx:else 
+             src="{{item}}" 
+             mode="aspectFill" 
+             bindtap="previewMedia" 
+             data-index="{{index}}" />
+      <view class="delete-btn" bindtap="deleteMedia" data-index="{{index}}">
+        <text class="delete-icon">×</text>
+      </view>
+    </view>
+    
+    <!-- 添加上传按钮 -->
+    <view class="upload-btn" 
+          bindtap="chooseMedia" 
+          wx:if="{{mediaFiles.length < (mediaType === 'video' ? 1 : maxImageCount)}}">
+      <text class="upload-text">+</text>
+      <text class="upload-desc">{{mediaType === 'video' ? '添加视频' : '添加图片'}}</text>
+    </view>
+  </view>
+</view>
+  <view class="toolbar">
+  <button class="submit-btn" bindtap="submitPost">发布</button>
+</view>
+</view>

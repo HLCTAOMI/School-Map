@@ -1,0 +1,69 @@
+<!-- pages/index/index.wxml -->
+<view class="page-container">
+  <!-- 顶部轮播图部分 -->
+  <view class="banner-section">
+    <swiper class="banner-swiper" 
+            indicator-dots="true" 
+            autoplay="true" 
+            interval="3000" 
+            duration="500"
+            circular="true"
+            indicator-color="rgba(255, 255, 255, 0.6)"
+            indicator-active-color="#ffffff">
+      <block wx:for="{{background}}" wx:key="index">
+        <swiper-item>
+          <image class="banner-image" src="{{item}}" mode="widthFix"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+    
+    <!-- 学校标志部分 -->
+    <view class="school-info">
+      <view class="school-logo">
+        <image class="logo-image" src="http://cdnjson.com/images/2024/12/23/OIP-C2419b04343dc82e8.jpg"/>
+      </view>
+      <view class="school-name">遵义师范学院</view>
+    </view>
+  </view>
+
+  <!-- 功能区域 -->
+  <view class="features-section">
+    <view class="section-card">
+      <view class="section-header">
+        <text class="section-title">常用功能</text>
+        <text class="section-more">更多 ></text>
+      </view>
+      
+      <view class="features-grid">
+        <view class="feature-item" bindtap="site">
+          <image class="feature-icon" src="{{function_buttons[0]}}"/>
+          <text class="feature-name">校园导航</text>
+        </view>
+        <view class="feature-item" bindtap="forum">
+          <image class="feature-icon" src="{{function_buttons[1]}}"/>
+          <text class="feature-name">校园论坛</text>
+        </view>
+        <view class="feature-item">
+          <image class="feature-icon" src=""/>
+          <text class="feature-name">活动中心</text>
+        </view>
+        <view class="feature-item">
+          <image class="feature-icon" src=""/>
+          <text class="feature-name">校园资讯</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 活动区域 -->
+    <view class="section-card">
+      <view class="section-header">
+        <text class="section-title">近期活动</text>
+        <text class="section-more" bindtap="allabout">全部 ></text>
+      </view> 
+      
+      <view class="activity-list">
+      撒旦撒旦
+      </view>
+    </view>
+  </view>
+</view>
